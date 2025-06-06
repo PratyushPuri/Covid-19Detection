@@ -14,12 +14,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Random commits script
+      - name: commits script
         run: |
           #!/bin/bash
           MAX_CHARS=366
           COUNT=$(( ( RANDOM % 10 )  + 1 ))
-          echo "Aaj $COUNT commits honge!"
+          echo "$COUNT"
 
           for i in $(seq 1 $COUNT)
           do
