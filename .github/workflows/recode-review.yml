@@ -23,7 +23,7 @@ jobs:
           for i in $(seq 1 $COUNT)
           do
             git config --global user.name "PratyushPuri"
-            git config --global user.email "pratyushpuri17@gmail.com"
+            git config --global user.email "79128035+PratyushPuri@users.noreply.github.com"
             
             # Empty commit karo (koi file change nahi, sirf commit)
             git commit --allow-empty -m "Random commit $i on $(date +'%Y-%m-%d')"
