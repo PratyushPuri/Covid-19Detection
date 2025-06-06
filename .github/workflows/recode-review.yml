@@ -1,0 +1,31 @@
+name: AI Agent Recode
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  random-commits:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Random commits script
+        run: |
+          #!/bin/bash
+          COUNT=$(( ( RANDOM % 10 )  + 1 ))
+          echo "Aaj $COUNT commits honge!"
+
+          for i in $(seq 1 $COUNT)
+          do
+            git config --global user.name "PratyushPuri"
+            git config --global user.email "pratyushpuri17@gmail.com"
+            
+            # Empty commit karo (koi file change nahi, sirf commit)
+            git commit --allow-empty -m "commit"
+          done
+          git push
