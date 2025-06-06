@@ -17,15 +17,39 @@ jobs:
       - name: Random commits script
         run: |
           #!/bin/bash
+          MAX_CHARS=366
           COUNT=$(( ( RANDOM % 10 )  + 1 ))
           echo "Aaj $COUNT commits honge!"
 
           for i in $(seq 1 $COUNT)
           do
+            # Original file ka backup le lo
+            cp README.md original_backup.txt
+            
+            # Last line padho
+            LAST_LINE=$(tail -n 1 README.md 2>/dev/null || echo "")
+
+            # Step 1: Pehle "1" add karo
+            if [ ${#LAST_LINE} -lt $MAX_CHARS ]; then
+              # Last line me "1" jod do
+              head -n -1 README.md > temp.txt 2>/dev/null || true
+              echo -n "${LAST_LINE}1" >> temp.txt
+              echo "" >> temp.txt
+              mv temp.txt README.md
+            else
+              # Nayi line me "1" add karo
+              echo "1" >> README.md
+            fi
+
+            # Step 2: Ab wapas original state me restore kar do
+            cp original_backup.txt README.md
+            
+            # Cleanup
+            rm original_backup.txt
+
             git config --global user.name "PratyushPuri"
             git config --global user.email "pratyushpuri17@gmail.com"
-            
-            # Empty commit karo (koi file change nahi, sirf commit)
-            git commit --allow-empty -m "commit"
+            git add README.md
+            git commit -m "Random commit $i on $(date +'%Y-%m-%d')"
           done
           git push
