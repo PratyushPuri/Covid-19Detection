@@ -68,5 +68,5 @@ As this is a beginner-level project developed during my bachelor's engineering f
 - Larger and more diverse dataset could improve generalization
 - Advanced architectures like ResNet or EfficientNet could be explored
 - Additional preprocessing techniques could be implemented
-- Clinical validation would be required for any practical application
+- Clinical validation would be required for any practical application 
 
