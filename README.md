@@ -69,4 +69,4 @@ As this is a beginner-level project developed during my bachelor's engineering f
 - Advanced architectures like ResNet or EfficientNet could be explored
 - Additional preprocessing techniques could be implemented
 - Clinical validation would be required for any practical application 
-
+ 
